@@ -1,6 +1,13 @@
 import css from './ImageCard.module.css';
 
-const ImageCard = ({ image, showModal }) => {
+import { Image } from '../../types/image';
+
+type Props = {
+  image: Image;
+  showModal: (imageUrl: string) => void;
+};
+
+const ImageCard: React.FC<Props> = ({ image, showModal }) => {
   return (
     <div>
       <img

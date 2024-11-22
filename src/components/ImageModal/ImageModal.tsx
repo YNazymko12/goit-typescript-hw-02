@@ -2,9 +2,21 @@ import Modal from 'react-modal';
 import { useEffect } from 'react';
 import css from './ImageModal.module.css';
 
-const ImageModal = ({ isOpen, onRequestClose, largeImageURL }) => {
+type Props = {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  largeImageURL: string;
+};
+
+Modal.setAppElement('#root');
+
+const ImageModal: React.FC<Props> = ({
+  isOpen,
+  onRequestClose,
+  largeImageURL,
+}) => {
   useEffect(() => {
-    const handleKeyDown = event => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code === 'Escape') {
         onRequestClose();
       }
@@ -24,7 +36,7 @@ const ImageModal = ({ isOpen, onRequestClose, largeImageURL }) => {
       onRequestClose={onRequestClose}
       overlayClassName={css.overlay}
     >
-      <img className={css.image} src={largeImageURL} alt="" />
+      <img className={css.image} src={largeImageURL} alt="Image" />
     </Modal>
   );
 };
